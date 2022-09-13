@@ -1,0 +1,250 @@
+#!/bin/bash
+# COLOR
+COff='\033[0m'       # Text Reset
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+bw='\033[1;37m'
+#choose
+w=w
+help=help
+list=list
+clear=clear
+banner=banner
+nol=0
+satu=1
+dua=2
+tiga=3
+empat=4
+lima=5
+enam=6
+tujuh=7
+delapan=8
+sembilan=9
+sepuluh=10
+sebelas=11
+duabelas=12
+tigabelas=13
+empatbelas=14
+limabelas=15
+list(){
+echo -e "${BWhite}├─${BRed}[0].Exit"
+echo -e "${BWhite}├─${BGreen}[${bw}1${BGreen}].Wordpress"
+echo -e "${BWhite}├─${BGreen}[${bw}2${BGreen}].Joomla"
+echo -e "${BWhite}├─${BGreen}[${bw}3${BGreen}].Drupal"
+echo -e "${BWhite}├─${BGreen}[${bw}4${BGreen}].Django"
+echo -e "${BWhite}├─${BGreen}[${bw}5${BGreen}].Sharepoint"
+echo -e "${BWhite}├─${BGreen}[${bw}6${BGreen}].Magento"
+echo -e "${BWhite}├─${BGreen}[${bw}7${BGreen}].Caobox"
+echo -e "${BWhite}├─${BGreen}[${bw}8${BGreen}].PHP Nuke"
+echo -e "${BWhite}├─${BGreen}[${bw}9${BGreen}].Piwik"
+}
+list-template(){
+echo -e "${BRed}[0].Back"
+echo -e "${BBlue}[${bw}1${BBlue}].Search Page"
+echo -e "${BBlue}[${bw}2${BBlue}].Search Theme"
+}
+list-wordpress(){
+list-template
+echo -e "${BBlue}[${bw}3${BBlue}].Search Plugin"
+echo -e "${BBlue}[${bw}3${BBlue}].Search URLS"
+echo
+}
+list-joomla(){
+list-template
+echo -e "${BBlue}[${bw}3${BBlue}].Search Plugin"
+echo
+}
+list-drupal(){
+list-template
+echo -e "${BBlue}[${bw}3${BBlue}].Search URLS"
+echo
+}
+
+help(){
+echo
+echo -e "help         help"
+echo -e "list         list"
+echo -e "w            wordlists"
+echo -e "clear        clear screen"
+echo -e "banner       banner"
+echo
+}
+ctarget(){
+ct=${BBlue}'┌──('${BRed}'Target💀'${BBlue}')-['${BWhite}'Example : https://target.com'${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$ct"
+read -p "" target
+}
+csc(){
+cm=${BBlue}'┌──('${BRed}'Respone💀Status'${BBlue}')-['${BWhite}'Example :all, 200,301,302,401,403,500'${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$cm"
+read -p "" sc
+}
+ctype(){
+ct=${BBlue}'┌──('${BRed}'Choose💀Type'${BBlue}')-['${BWhite}''${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$ct"
+read -p "" type
+}
+
+coptions(){
+co=${BBlue}'┌──('${BRed}'Choose💀Options'${BBlue}')-['']\n└─'${BRed}'# '${BWhite}
+echo -ne "$co"
+read -p "" pilih
+}
+pilihan(){
+ctarget
+csc
+}
+wordlists=/usr/share/wordlists/seclists/Discovery/Web-Content/CMS
+konwo(){
+if [ $nol = $pilih ]; then
+    exit
+elif [ $clear == $pilih  ]; then
+    clear
+elif [ $list == $pilih ]; then
+    list
+elif [ $help == $pilih ]; then
+    help
+elif [ $banner == $pilih ]; then
+    banner
+elif [ $satu == $pilih ] ; then 
+	pilihan
+    wfuzz -w $wordlists/wordpress.fuzz.txt --sc $sc $target/FUZZ
+elif [ $dua == $pilih ];then
+	pilihan
+    wfuzz -w $wordlists/wp-themes.fuzz.txt --sc $sc $target/FUZZ
+elif [ $tiga == $pilih ];then
+	pilihan
+    wfuzz -w $wordlists/wp-plugins.fuzz.txt --sc $sc $target/FUZZ
+elif [ $empat == $pilih ];then
+	pilihan
+    wfuzz -w $wordlists/urls-wordpress-3.3.1.txt --sc $sc $target/FUZZ
+else
+  echo -e "${BRed}Pilihan Salah${COff}"
+
+fi
+}
+
+konjo(){
+if [ $nol = $pilih ]; then
+    exit
+elif [ $clear == $pilih  ]; then
+    clear
+elif [ $list == $pilih ]; then
+    list
+elif [ $help == $pilih ]; then
+    help
+elif [ $banner == $pilih ]; then
+    banner
+elif [ $satu == $pilih ] ; then 
+    pilihan
+    wfuzz -w $wordlists/joomla.fuzz.txt --sc $sc $target/FUZZ
+elif [ $dua == $pilih ];then
+    pilihan
+    wfuzz -w $wordlists/joomla-themes.fuzz.txt --sc $sc $target/FUZZ
+elif [ $tiga == $pilih ];then
+    pilihan
+    wfuzz -w $wordlists/joomla-plugins.fuzz.txt --sc $sc $target/FUZZ
+else
+  echo -e "${BRed}Pilihan Salah${COff}"
+
+fi
+}
+kondru(){
+if [ $nol = $pilih ]; then
+    exit
+elif [ $clear == $pilih  ]; then
+    clear
+elif [ $list == $pilih ]; then
+    list
+elif [ $help == $pilih ]; then
+    help
+elif [ $banner == $pilih ]; then
+    banner 
+elif [ $satu == $pilih ] ; then 
+    pilihan
+    wfuzz -w $wordlists/Drupal.txt --sc $sc $target/FUZZ
+elif [ $dua == $pilih ];then
+    pilihan
+    wfuzz -w $wordlists/Drupal-themes.txt --sc $sc $target/FUZZ
+elif [ $tiga == $pilih ];then
+    pilihan
+    wfuzz -w $wordlists/Drupal-urls.txt --sc $sc $target/FUZZ
+else
+  echo -e "${BRed}Pilihan Salah${COff}"
+
+fi
+}
+
+banner(){
+echo -e "${BRed}"
+echo -e -ne "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCMS\n" | figlet -f smblock
+echo -e -ne  "\t\t\t<=========================>\n"
+}
+clear
+banner
+list
+while true
+do
+echo
+coptions
+if [ $nol = $pilih ]; then
+    automations
+elif [ $clear == $pilih  ]; then
+    clear
+elif [ $list == $pilih ]; then
+    list
+elif [ $help == $pilih ]; then
+    help
+elif [ $banner == $pilih ]; then
+    banner
+elif [ $satu == $pilih ];then
+	list-wordpress
+	while true
+	do
+	ctype
+	konwo
+	done
+elif [ $dua == $pilih ];then
+    list-joomla
+    while true
+    do
+	ctype
+    konjo
+    done
+elif [ $tiga == $pilih ];then
+    list-drupal
+    while true
+    do
+	ctype
+    kondru
+    done
+elif [ $empat == $pilih  ];then
+	pilihan
+	wfuzz -w $wordlists/Django.txt --sc $sc $target/FUZZ
+elif [ $lima == $pilih  ];then
+    pilihan
+    wfuzz -w $wordlists/Sharepoint.fuzz.txt --sc $sc $target/FUZZ
+elif [ $enam == $pilih  ];then
+    pilihan
+    wfuzz -w $wordlists/sitemap-magento.txt --sc $sc $target/FUZZ
+elif [ $tujuh == $pilih  ];then
+    pilihan
+    wfuzz -w $wordlists/caobox-cms.txt --sc $sc $target/FUZZ
+elif [ $delapan == $pilih  ];then
+    pilihan
+    wfuzz -w $wordlists/php-nuke.fuzz.txt --sc $sc $target/FUZZ
+elif [ $sembilan == $pilih  ];then
+    pilihan
+    wfuzz -w $wordlists/piwik-3.0.4.txt --sc $sc $target/FUZZ
+else
+  echo -e "${BRed}Pilihan Salah${COff}"
+
+fi
+done

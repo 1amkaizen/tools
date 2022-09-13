@@ -1,0 +1,261 @@
+#!/bin/bash
+# COLOR
+COff='\033[0m'       # Text Reset
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+bw='\033[1;37m'
+#choose
+w=w
+help=help
+list=list
+clear=clear
+banner=banner
+nol=0
+satu=1
+dua=2
+tiga=3
+empat=4
+lima=5
+enam=6
+tujuh=7
+delapan=8
+sembilan=9
+sepuluh=10
+sebelas=11
+duabelas=12
+tigabelas=13
+empatbelas=14
+limabelas=15
+eb=16
+tb=17
+db=18
+sb=19
+dp=20
+ds=21
+dd=22
+dt=23
+de=24
+dl=25
+dn=26
+list(){
+echo -e "${BWhite}├─${BRed}[0].Exit"
+echo -e "${BWhite}├─${BGreen}[${bw}1${BGreen}].Directory Fuzzing"
+echo -e "${BWhite}├─${BGreen}[${bw}2${BGreen}].Admin Panel Fuzzing"
+echo -e "${BWhite}├─${BGreen}[${bw}3${BGreen}].PHPMyAdmin Fuzzing"
+echo -e "${BWhite}├─${BGreen}[${bw}4${BGreen}].Language Fuzzing"
+echo -e "${BWhite}├─${BGreen}[${bw}5${BGreen}].PHP File Fuzzing"
+echo -e "${BWhite}├─${BGreen}[${bw}6${BGreen}]. Fuzzing"
+echo -e "${BWhite}├─${BGreen}[${bw}7${BGreen}]. Fuzzing"
+echo -e "${BWhite}├─${BGreen}[${bw}8${BGreen}]. Fuzzing"
+echo -e "${BWhite}├─${BGreen}[${bw}9${BGreen}]. Fuzzing"
+}
+wordlists1(){
+echo -e "${BRed}[0].Back"
+echo -e "${BBlue}[${bw}1${BBlue}].directory-list-1.0.txt"
+echo -e "${BBlue}[${bw}2${BBlue}].directory-list-2.3-small.txt"
+echo -e "${BBlue}[${bw}3${BBlue}].directory-list-2.3-medium.txt"
+echo -e "${BBlue}[${bw}4${BBlue}].directory-list-2.3-big.txt"
+echo -e "${BBlue}[${bw}5${BBlue}].directory-list-lowercase-2.3-small.txt"
+echo -e "${BBlue}[${bw}6${BBlue}].directory-list-lowercase-2.3-medium.txt"
+echo -e "${BBlue}[${bw}7${BBlue}].directory-list-lowercase-2.3-big.txt"
+}
+wordlists2(){
+echo -e "${BRed}[0].Back"
+echo -e -ne "${BBlue}[${bw}1${BBlue}].ascx\t${BBlue}[${bw}11${BBlue}].java\t${BBlue}[${bw}21${BBlue}].rb\n"
+echo -e -ne "${BBlue}[${bw}2${BBlue}].asp\t\t${BBlue}[${bw}12${BBlue}].js\t\t${BBlue}[${bw}22${BBlue}].sh\n"
+echo -e -ne "${BBlue}[${bw}3${BBlue}].aspx\t${BBlue}[${bw}13${BBlue}].jsp\t${BBlue}[${bw}23${BBlue}].swf\n"
+echo -e -ne "${BBlue}[${bw}4${BBlue}].C\t\t${BBlue}[${bw}14${BBlue}].jspf\t${BBlue}[${bw}24${BBlue}].tpl\n"
+echo -e -ne "${BBlue}[${bw}5${BBlue}].cfm\t\t${BBlue}[${bw}15${BBlue}].php\t${BBlue}[${bw}25${BBlue}].vb\n"
+echo -e -ne "${BBlue}[${bw}6${BBlue}].cpp\t\t${BBlue}[${bw}16${BBlue}].php3\t${BBlue}[${bw}26${BBlue}].wsdl\n"
+echo -e -ne "${BBlue}[${bw}7${BBlue}].cs\t\t${BBlue}[${bw}17${BBlue}].php5\t\n"
+echo -e -ne "${BBlue}[${bw}8${BBlue}].css\t\t${BBlue}[${bw}18${BBlue}].phpt\t\n"
+echo -e -ne "${BBlue}[${bw}9${BBlue}].html\t${BBlue}[${bw}19${BBlue}].pl\t\n"
+echo -e -ne "${BBlue}[${bw}10${BBlue}].jar\t${BBlue}[${bw}20${BBlue}].py\t\n"
+}
+
+wordlists=/usr/share/wordlists/seclists/Discovery/Web-Content
+konsat(){
+if [ $clear == $w1  ]; then
+    clear
+elif [ $w == $w1 ]; then
+    wordlists1
+elif [ $nol == $w1 ]; then
+    kondisi
+elif [ $help == $w1 ]; then
+    help
+elif [ $satu == $w1 ] ; then
+        wfuzz -w $wordlists/directory-list-1.0.txt -u $target/FUZZ --sc $sc -c -v
+elif [ $dua == $w1  ] ; then
+        wfuzz -w $wordlists/directory-list-2.3-small.txt -u $target/FUZZ --sc $sc -c -v
+elif [ $tiga == $w1  ] ; then
+        wfuzz -w $wordlists/directory-list-2.3-medium.txt -u $target/FUZZ --sc $sc -c -v
+elif [ $empat == $w1  ] ; then
+        wfuzz -w $wordlists/directory-list-2.3-big.txt -u $target/FUZZ --sc $sc -c -v
+elif [ $lima == $w1  ] ; then
+        wfuzz -w $wordlists/directory-list-lowercase-2.3-small.txt -u $target/FUZZ --sc $sc -c -v
+elif [ $enam == $w1  ] ; then
+        wfuzz -w $wordlists/directory-list-lowercase-2.3-medium.txt -u $target/FUZZ --sc $sc -c -v
+elif [ $tujuh == $w1  ] ; then
+        wfuzz -w $wordlists/directory-list-lowercase-2.3-big.txt -u $target/FUZZ --sc $sc -c -v
+else
+        echo -e "${BRed}Wordlists Tidak Ada${COff}"
+fi
+}
+language=/usr/share/wordlists/seclists/Discovery/Web-Content/SVNDigger/cat/Language
+kondu(){
+if [ $clear == $w1  ]; then
+    clear
+elif [ $w == $w1 ]; then
+    wordlists1
+elif [ $nol == $w1 ]; then
+    kondisi
+elif [ $help == $w1 ]; then
+    help
+elif [ $satu == $w1 ] ; then
+        wfuzz -w $language/acsx.txt -u $target/FUZZ --sc $sc -c 
+elif [ $dua == $w1  ] ; then
+        wfuzz -w $language/asp.txt -u $target/FUZZ --sc $sc -c 
+elif [ $tiga == $w1  ] ; then
+        wfuzz -w $language/aspx.txt -u $target/FUZZ --sc $sc -c 
+elif [ $empat == $w1  ] ; then
+        wfuzz -w $language/c.txt -u $target/FUZZ --sc $sc -c 
+elif [ $lima == $w1  ] ; then
+        wfuzz -w $language/cfm.txt -u $target/FUZZ --sc $sc -c 
+elif [ $enam == $w1  ] ; then
+        wfuzz -w $language/cpp.txt -u $target/FUZZ --sc $sc -c 
+elif [ $tujuh == $w1  ] ; then
+        wfuzz -w $language/cs.txt -u $target/FUZZ --sc $sc -c 
+elif [ $delapan == $w1  ] ; then
+        wfuzz -w $language/css.txt -u $target/FUZZ --sc $sc -c 
+elif [ $sembilan == $w1  ] ; then
+        wfuzz -w $language/html.txt -u $target/FUZZ --sc $sc -c 
+elif [ $sepuluh == $w1  ] ; then
+        wfuzz -w $language/jar.txt -u $target/FUZZ --sc $sc -c 
+elif [ $sebelas == $w1  ] ; then
+        wfuzz -w $language/java.txt -u $target/FUZZ --sc $sc -c 
+elif [ $duabelas == $w1  ] ; then
+        wfuzz -w $language/js.txt -u $target/FUZZ --sc $sc -c 
+elif [ $tigabelas == $w1  ] ; then
+        wfuzz -w $language/jsp.txt -u $target/FUZZ --sc $sc -c 
+elif [ $empatbelas == $w1  ] ; then
+        wfuzz -w $language/jspf.txt -u $target/FUZZ --sc $sc -c 
+elif [ $limabelas == $w1  ] ; then
+        wfuzz -w $language/php.txt -u $target/FUZZ --sc $sc -c 
+elif [ $eb == $w1  ] ; then
+        wfuzz -w $language/php3.txt -u $target/FUZZ --sc $sc -c 
+elif [ $tb == $w1  ] ; then
+        wfuzz -w $language/php5.txt -u $target/FUZZ --sc $sc -c 
+elif [ $db == $w1  ] ; then
+        wfuzz -w $language/phpt.txt -u $target/FUZZ --sc $sc -c 
+elif [ $sb == $w1  ] ; then
+        wfuzz -w $language/pl.txt -u $target/FUZZ --sc $sc -c 
+elif [ $dp == $w1  ] ; then
+        wfuzz -w $language/py.txt -u $target/FUZZ --sc $sc -c 
+elif [ $ds == $w1  ] ; then
+        wfuzz -w $language/rb.txt -u $target/FUZZ --sc $sc -c 
+elif [ $dd == $w1  ] ; then
+        wfuzz -w $language/sh.txt -u $target/FUZZ --sc $sc -c 
+elif [ $dt == $w1  ] ; then
+        wfuzz -w $language/swf.txt -u $target/FUZZ --sc $sc -c 
+elif [ $de == $w1  ] ; then
+        wfuzz -w $language/tpl.txt -u $target/FUZZ --sc $sc -c 
+elif [ $dl == $w1  ] ; then
+        wfuzz -w $language/vb.txt -u $target/FUZZ --sc $sc -c 
+elif [ $dn == $w1  ] ; then
+        wfuzz -w $language/wsdl.txt -u $target/FUZZ --sc $sc -c 
+else
+        echo -e "${BRed}Wordlists Tidak Ada${COff}"
+fi
+}
+banner(){
+echo -e "${BRed}"
+echo -e -ne "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAutowfuzz\n" | figlet -f smblock
+echo -e -ne  "\t\t\t<=========================>\n"
+}
+ctarget(){
+ct=${BBlue}'┌──('${BRed}'Target💀'${BBlue}')-['${BWhite}'Example : https://target.com'${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$ct"
+read -p "" target
+}
+csc(){
+cm=${BBlue}'┌──('${BRed}'Respone💀Status'${BBlue}')-['${BWhite}'Example :all, 200,301,302,401,403,500'${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$cm"
+read -p "" sc
+}
+cwordl(){
+cw=${BBlue}'┌──('${BRed}'Choose💀Wordlists'${BBlue}')-['${BWhite}''${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$cw"
+read -p "" w1
+}
+
+coptions(){
+co=${BBlue}'┌──('${BRed}'Choose💀Options'${BBlue}')-['']\n└─'${BRed}'# '${BWhite}
+echo -ne "$co"
+read -p "" pilih
+}
+
+clear
+banner
+kondisi(){
+list
+while true
+do
+fuzz=FUZZ
+echo
+coptions
+if [ $nol = $pilih ]; then
+    automations
+elif [ $clear == $pilih  ]; then
+    clear
+elif [ $list == $pilih ]; then
+    list
+elif [ $help == $pilih ]; then
+    help
+elif [ $banner == $pilih ]; then
+    banner
+elif [ $satu == $pilih ] ; then
+	ctarget
+	csc
+    	wordlists1
+    	echo -e "${BWhite}"
+    	while true
+    	do
+	cwordl
+        konsat
+    	done
+elif [ $dua == $pilih ];then
+	ctarget
+	csc
+	wfuzz -w /usr/share/wordlists/wfuzz/general/admin-panels.txt -u $target/FUZZ -c --sc $sc
+elif [ $tiga == $pilih ];then
+	ctarget
+	csc
+    wfuzz -w $wordlists/PHP.fuzz.txt -u $target/FUZZ -c --sc $sc
+elif [ $empat == $pilih ] ; then
+	ctarget
+	csc
+    wordlists2
+    echo -e "${BWhite}"
+    while true
+    do
+	cwordl
+    kondu
+    done
+elif [ $lima == $pilih ];then
+	ctarget
+	csc
+    wfuzz -w $wordlists/Common-PHP-Filenames.txt -u $target/FUZZ -c --sc $sc
+else
+  echo -e "${BRed}Pilihan Salah${COff}"
+fi
+done
+}
+kondisi
+

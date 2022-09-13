@@ -1,0 +1,174 @@
+#!/bin/bash
+# COLOR
+COff='\033[0m'       # Text Reset
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BG='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BW='\033[1;37m'       # White
+nol=0
+clear=clear
+list=list
+a=1
+b=2
+c=3
+d=4
+e=5
+f=6
+g=7
+h=8
+i=9
+j=10
+k=11
+l=12
+m=13
+n=14
+o=15
+p=16
+q=17
+r=18
+s=19
+t=20
+u=21
+v=22
+w=23
+x=24
+y=25
+z=26
+aa=27
+bb=28
+cc=29
+dd=30
+ee=31
+ff=32
+gg=33
+hh=34
+ii=35
+jj=36
+kk=37
+ll=38
+mm=39
+nn=40
+list(){
+echo -e -ne "${BG}[${BW}1${BG}].ascii12.tlf\t\t${BG}[${BW}11${BG}].circle.tlf\t\t${BG}[${BW}21${BG}].mono12.tlf\t\t${BG}[${BW}31${BG}].smbraille.tlf\n"
+echo -e -ne "${BG}[${BW}2${BG}].ascii9.tlf\t\t${BG}[${BW}12${BG}].digital.flf\t${BG}[${BW}22${BG}].mono9.tlf\t\t${BG}[${BW}32${BG}].smmono12.tlf\n"
+echo -e -ne "${BG}[${BW}3${BG}].banner.flf\t\t${BG}[${BW}13${BG}].emboss.tlf\t\t${BG}[${BW}23${BG}].pagga.tlf\t\t${BG}[${BW}33${BG}].smmono9.tlf\n"
+echo -e -ne "${BG}[${BW}4${BG}].big.flf\t\t${BG}[${BW}14${BG}].emboss2.tlf\t${BG}[${BW}24${BG}].script.flf\t\t${BG}[${BW}34${BG}].smscript.flf\n"
+echo -e -ne "${BG}[${BW}5${BG}].bigascii12.tlf\t${BG}[${BW}15${BG}].future.tlf\t\t${BG}[${BW}25${BG}].shadow.flf\t\t${BG}[${BW}35${BG}].smshadow.flf\n"
+echo -e -ne "${BG}[${BW}6${BG}].bigascii9.tlf\t${BG}[${BW}16${BG}].ivrit.flf\t\t${BG}[${BW}26${BG}].slant.flf\t\t${BG}[${BW}36${BG}].smslant.flf\n"
+echo -e -ne "${BG}[${BW}7${BG}].bigmono12.tlf\t${BG}[${BW}17${BG}].lean.flf\t\t${BG}[${BW}27${BG}].small.flf\t\t${BG}[${BW}37${BG}].standard.flf\n"
+echo -e -ne "${BG}[${BW}8${BG}].bigmono9.tlf\t${BG}[${BW}18${BG}].letter.tlf\t\t${BG}[${BW}28${BG}].smascii12.tlf\t${BG}[${BW}38${BG}].term.flf\n"
+echo -e -ne "${BG}[${BW}9${BG}].block.flf\t\t${BG}[${BW}19${BG}].mini.flf\t\t${BG}[${BW}29${BG}].smascii9.tlf\t${BG}[${BW}39${BG}].wideterm.tlf\n"
+echo -e -ne "${BG}[${BW}10${BG}].bubble.flf\t\t${BG}[${BW}20${BG}].mnemonic.flf\t${BG}[${BW}30${BG}].smblock.tlf\t${BG}[${BW}40${BG}].\n" 
+}
+list
+while true
+do
+read -p "Pilih Font : " pilih
+read -p "Masukkan Text : " huruf
+echo -e "${COff}"
+if [ $nol == $pilih  ];then
+	exit
+elif [ $clear == $pilih  ]; then
+	clear
+elif [ $list == $pilih  ]; then
+	list
+elif [ $a == $pilih  ]; then
+	figlet -f ascii12 $huruf
+elif [ $b == $pilih  ];then
+	figlet -f ascii9 $huruf
+elif [ $c == $pilih  ];then
+        figlet -f banner $huruf
+elif [ $d == $pilih  ];then
+        figlet -f big $huruf
+elif [ $e == $pilih  ];then
+        figlet -f bigascii12 $huruf
+elif [ $f == $pilih  ];then
+        figlet -f bigascii9 $huruf
+elif [ $g == $pilih  ];then
+        figlet -f bigmono12 $huruf
+elif [ $h == $pilih  ];then
+        figlet -f bigmono9 $huruf
+elif [ $i == $pilih  ];then
+        figlet -f block $huruf
+elif [ $j == $pilih  ];then
+        figlet -f bubble $huruf
+elif [ $k == $pilih  ];then
+        figlet -f circle $huruf
+elif [ $l == $pilih  ];then
+        figlet -f digital $huruf
+elif [ $m == $pilih  ];then
+        figlet -f emboss $huruf
+elif [ $n == $pilih  ];then
+        figlet -f emboss2 $huruf
+elif [ $o == $pilih  ];then
+        figlet -f future $huruf
+elif [ $p == $pilih  ];then
+        figlet -f ivrit $huruf
+elif [ $q == $pilih  ];then
+        figlet -f lean $huruf
+elif [ $r == $pilih  ];then
+        figlet -f letter $huruf
+elif [ $s == $pilih  ];then
+        figlet -f mini $huruf
+elif [ $t == $pilih  ];then
+        figlet -f mnemonic $huruf
+elif [ $u == $pilih  ];then
+        figlet -f mono12 $huruf
+elif [ $v == $pilih  ];then
+        figlet -f mono9 $huruf
+elif [ $w == $pilih  ];then
+        figlet -f pagga $huruf
+elif [ $x == $pilih  ];then
+        figlet -f script $huruf
+elif [ $y == $pilih  ];then
+        figlet -f shadow $huruf
+elif [ $z == $pilih  ];then
+        figlet -f slant $huruf
+elif [ $aa == $pilih  ];then
+        figlet -f small $huruf
+elif [ $bb == $pilih  ];then
+        figlet -f smascii12 $huruf
+elif [ $cc == $pilih  ];then
+        figlet -f smascii9 $huruf
+elif [ $dd == $pilih  ];then
+        figlet -f smblock $huruf
+elif [ $ee == $pilih  ];then
+        figlet -f smbraille $huruf
+elif [ $ff == $pilih  ];then
+        figlet -f smmono12 $huruf
+elif [ $gg == $pilih  ];then
+        figlet -f smmono9 $huruf
+elif [ $hh == $pilih  ];then
+        figlet -f smscript $huruf
+elif [ $ii == $pilih  ];then
+        figlet -f smshadow $huruf
+elif [ $jj == $pilih  ];then
+        figlet -f smslant $huruf
+elif [ $kk == $pilih  ];then
+        figlet -f standard $huruf
+elif [ $ll == $pilih  ];then
+        figlet -f term $huruf
+elif [ $mm == $pilih  ];then
+        figlet -f wideterm $huruf
+elif [ $nn == $pilih  ];then
+        figlet -f  $huruf
+else
+	echo -e "tidak ada"
+fi
+if [ $nol == $huruf  ];then
+        exit
+elif [ $clear == $huruf  ]; then
+        clear
+elif [ $list == $huruf  ]; then
+        list
+else
+	echo -e "${BRed}tidak ada"
+fi
+
+
+done

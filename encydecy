@@ -1,0 +1,167 @@
+#!/bin/bash
+# COLOR
+Color_Off='\033[0m'       # Text Reset
+# Regular Colors
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+#choose
+help=help
+list=list
+banner=banner
+clear=clear
+nol=0
+satu=1
+dua=2
+tiga=3
+empat=4
+lima=5
+enam=6
+tujuh=7
+delapan=8
+sembilan=9
+sepuluh=10
+sebelas=11
+duabelas=12
+banner(){
+echo -e "${BGreen}"
+echo -e -ne "\t\t\t\t\t\t\t\t\t\t\t\t\\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tENCYDECY\n" | figlet -f smblock
+echo -e -ne "\t\t\t${BRed}+===================================+\n"
+}
+list(){
+echo -e -ne "\t\t\t${BWhite}| No | ${BBlue}Name    	         ${BWhite}| ${BBlue}Type    ${BWhite} |\n"
+echo -e -ne "\t\t\t${BWhite}+----+-------------------+----------+\n"
+echo -e -ne "\t\t\t${BWhite}|${BRed} 0  ${BWhite}| ${BRed}EXIT              ${BWhite}| ${BRed}EXIT     ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 1  | ${BGreen}ROT13   	         ${BWhite}| ${BCyan}Hash     ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 2  | ${BGreen}MD5     	         ${BWhite}| ${BCyan}Hash     ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 3  | ${BGreen}SHA256  	         ${BWhite}| ${BYellow}Encrypt  ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 4  | ${BGreen}SHA1              ${BWhite}| ${BYellow}Encrypt  ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 5  | ${BGreen}SHA224            ${BWhite}| ${BYellow}Encrypt  ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 6  | ${BGreen}SHA384            ${BWhite}| ${BYellow}Encrypt  ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 7  | ${BGreen}SHA512            ${BWhite}| ${BYellow}Encrypt  ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 8  | ${BGreen}BASE32            ${BWhite}| ${BYellow}Encrypt  ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 9  | ${BGreen}BASE32            ${BWhite}| ${BPurple}Decrypt  ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 10 | ${BGreen}BASE64  	         ${BWhite}| ${BYellow}Encrypt  ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 11 | ${BGreen}BASE64  	         ${BWhite}| ${BPurple}Decrypt  ${BWhite}|\n"
+echo -e -ne "\t\t\t${BWhite}| 12 | ${BGreen}SHA256 ON Base64  ${BWhite}| ${BYellow}Encrypt  ${BWhite}|\n"
+}
+coptions(){
+co=${BBlue}'┌──('${BRed}'Choose💀Options'${BBlue}')-['']\n└─'${BRed}'# '${BWhite}
+echo -ne "$co"
+read  -p "" pilih
+}
+output(){
+ou=${BPurple}'|=>'${BGreen}''$etext
+echo -e "$ou"
+}
+
+subtext(){
+st=${BBlue}'┌──('${BRed}'Submit💀Text'${BBlue}')-['${BWhite}$a${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$st"
+read -p "" code
+}
+
+
+
+clear
+banner
+list
+while true
+do
+echo
+coptions
+if [ $nol = $pilih ]; then
+	automations
+elif [ $satu = $pilih ]; then
+	a="ROT13"
+	subtext
+	etext=` echo  $code | tr 'A-Za-z' 'N-ZA-Mn-za-m'`
+	output
+	#echo -e "${BGreen}[+] Output :${BWhite} $etext"
+elif [ $dua = $pilih ]; then
+	a="MD5"
+	subtext
+	etext=g` echo -n $code   | md5sum `
+	output
+elif [ $tiga = $pilih ]; then
+	a="SHA256"
+	subtext
+	etext=` echo $code | sha256sum`
+	output
+elif [ $empat = $pilih ]; then
+	a="SHA1"
+	subtext
+    etext=` echo $code | sha1sum`
+	output
+elif [ $lima = $pilih ]; then
+	a="SHA224"
+	subtext
+    etext=` echo $code | sha224sum`
+	output
+elif [ $enam = $pilih ]; then
+	a="SHA384"
+	subtext
+    etext=` echo $code | sha384sum`
+	output
+elif [ $tujuh = $pilih ]; then
+	a="SHA512"
+	subtext
+    etext=` echo $code | sha512sum`
+	output
+elif [ $delapan = $pilih ]; then
+	a="BASE32"
+	subtext
+    etext=`echo  $code | base32`
+	output
+elif [ $sembilan = $pilih ]; then
+	a="DECODE BASE32"
+	subtext
+     etext=`echo $code | base32 --decode`
+	output
+elif [ $sepuluh = $pilih ]; then
+	a="BASE64"
+	subtext
+	etext=`echo  $code | base64`
+	output
+elif [ $sebelas = $pilih ]; then
+	a="DECODE BASE64"
+	subtext
+    etext=`echo $code | base64 --decode`
+	output
+elif [ $duabelas = $pilih ]; then
+	a="SHA256 ON BASE64"
+	subtext
+	etext=` echo -n $code | openssl dgst -binary -sha256 | openssl base64`
+	output
+elif [ $clear = $pilih ]; then
+	clear
+elif [ $list = $pilih ]; then
+	list
+elif [ $banner = $pilih ]; then
+        banner
+elif [ $help = $pilih  ]; then
+	echo
+	echo "		command			  Desc"
+	echo "		---------		--------"
+	echo "		0			  exit"
+	echo "		h			  Help"
+	echo "		l			  list	"
+	echo "		clear			  clear"
+else
+        echo -e "${BRed}Pilihan Salah${BWhite}"
+fi
+done

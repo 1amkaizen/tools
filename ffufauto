@@ -1,0 +1,416 @@
+#!/bin/bash
+# COLOR
+COff='\033[0m'       # Text Reset
+# Regular Colors
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+bw='\033[1;37m'
+#choose
+w=w
+help=help
+list=list
+clear=clear
+banner=banner
+nol=0
+satu=1
+dua=2
+tiga=3
+empat=4
+lima=5
+enam=6
+tujuh=7
+delapan=8
+sembilan=9
+sepuluh=10
+sebelas=11
+duabelas=12
+tigabelas=13
+empatbelas=14
+limabelas=15
+list(){
+echo -e -ne "\t\t\t${BWhite}├─${BRed}[0].Exit\n"
+echo -e -ne "\t\t\t${BWhite}├─${BGreen}[${bw}1${BGreen}].Directory Fuzzing\n"
+echo -e -ne "\t\t\t${BWhite}├─${BGreen}[${bw}2${BGreen}].Extension Fuzzing\n"
+echo -e -ne "\t\t\t${BWhite}├─${BGreen}[${bw}3${BGreen}].Page Fuzzing\n"
+echo -e -ne "\t\t\t${BWhite}├─${BGreen}[${bw}4${BGreen}].Recursive Fuzzing\n"
+echo -e -ne "\t\t\t${BWhite}├─${BGreen}[${bw}5${BGreen}].Sub-domain Fuzzing\n"
+echo -e -ne "\t\t\t${BWhite}├─${BGreen}[${bw}6${BGreen}].VHost Fuzzing\n"
+echo -e -ne "\t\t\t${BWhite}├─${BGreen}[${bw}7${BGreen}].Parameter Fuzzing - GET\n"
+echo -e -ne "\t\t\t${BWhite}├─${BGreen}[${bw}8${BGreen}].Parameter Fuzzing - POST\n"
+echo -e -ne "\t\t\t${BWhite}├─${BGreen}[${bw}9${BGreen}].Value Fuzzing\n"
+}
+wordlists1(){
+echo -e  "${BRed}[0].Back"
+echo -e  "${BBlue}[${bw}1${BBlue}].directory-list-1.0.txt"
+echo -e  "${BBlue}[${bw}2${BBlue}].directory-list-2.3-small.txt"
+echo -e  "${BBlue}[${bw}3${BBlue}].directory-list-2.3-medium.txt"
+echo -e  "${BBlue}[${bw}4${BBlue}].directory-list-2.3-big.txt"
+echo -e  "${BBlue}[${bw}5${BBlue}].directory-list-lowercase-2.3-small.txt"
+echo -e  "${BBlue}[${bw}6${BBlue}].directory-list-lowercase-2.3-medium.txt"
+echo -e  "${BBlue}[${bw}7${BBlue}].directory-list-lowercase-2.3-big.txt"
+}
+wordlists2(){
+echo -e "${BRed}[0].Back"
+echo -e "${BBlue}[${bw}1${BBlue}].subdomains-top1million-5000.txt"
+echo -e "${BBlue}[${bw}2${BBlue}].subdomains-top1million-20000.txt"
+echo -e "${BBlue}[${bw}3${BBlue}].subdomains-top1million-110000.txt"
+echo -e "${BBlue}[${bw}4${BBlue}].deepmagic.com-prefixes-top500.txt"
+echo -e "${BBlue}[${bw}5${BBlue}].deepmagic.com-prefixes-top50000.txt"
+echo -e "${BBlue}[${bw}6${BBlue}].bitquark-subdomains-top100000.txt"
+echo -e "${BBlue}[${bw}7${BBlue}].shubs-stackoverflow.txt"
+echo -e "${BBlue}[${bw}8${BBlue}].shubs-subdomains.txt"
+echo -e "${BBlue}[${bw}9${BBlue}].combined_subdomains.txt"
+echo -e "${BBlue}[${bw}10${BBlue}].fierce-hostlist.txt"
+echo -e "${BBlue}[${bw}11${BBlue}].italian-subdomains.txt"
+echo -e "${BBlue}[${bw}12${BBlue}].dns-Jhaddix.txt"
+echo -e "${BBlue}[${bw}13${BBlue}].namelist.txt"
+echo -e "${BBlue}[${bw}14${BBlue}].tlds.txt" 
+echo -e "${BBlue}[${bw}15${BBlue}].sortedcombined-knock-dnsrecon-fierce-reconng.txt"
+}
+wordlists=/usr/share/wordlists/seclists/Discovery/Web-Content
+konsat(){
+if [ $satu == $w1 ] ; then
+        ffuf -w $wordlists/directory-list-1.0.txt:FUZZ -u $target/FUZZ -mc $mc -c
+elif [ $clear == $w1  ]; then
+    clear
+elif [ $w == $w1 ]; then
+    wordlists1
+elif [ $nol == $w1 ]; then
+    kondisi
+elif [ $help == $w1 ]; then
+    help
+elif [ $dua == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-2.3-small.txt:FUZZ -u $target/FUZZ -mc $mc -c
+elif [ $tiga == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-2.3-medium.txt:FUZZ -u $target/FUZZ -mc $mc -c
+elif [ $empat == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-2.3-big.txt:FUZZ -u $target/FUZZ -mc $mc -c
+elif [ $lima == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-lowercase-2.3-small.txt:FUZZ -u $target/FUZZ -mc $mc -c
+elif [ $enam == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-lowercase-2.3-medium.txt:FUZZ -u $target/FUZZ -mc $mc -c
+elif [ $tujuh == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-lowercase-2.3-big.txt:FUZZ -u $target/FUZZ -mc $mc -c
+else
+        echo -e "${BRed}Wordlists Tidak Ada${COff}"
+fi
+}
+#########
+kondu(){
+if [ $satu == $w1 ] ; then
+        ffuf -w $wordlists/directory-list-1.0.txt:FUZZ -u $target/FUZZ.$ext -mc $mc -c
+elif [ $clear == $w1  ]; then
+    clear
+elif [ $w == $w1 ]; then
+    wordlists1
+elif [ $nol == $w1 ]; then
+    kondisi
+elif [ $help == $w1 ]; then
+    help
+elif [ $dua == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-2.3-small.txt:FUZZ -u $target/FUZZ.$ext -mc $mc -c
+elif [ $tiga == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-2.3-medium.txt:FUZZ -u $target/FUZZ.$ext -mc $mc -c
+elif [ $empat == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-2.3-big.txt:FUZZ -u $target/FUZZ.$ext -mc $mc -c
+elif [ $lima == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-lowercase-2.3-small.txt:FUZZ -u $target/FUZZ.$ext -mc $mc -c
+elif [ $enam == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-lowercase-2.3-medium.txt:FUZZ -u $target/FUZZ.$ext -mc $mc -c
+elif [ $tujuh == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-lowercase-2.3-big.txt:FUZZ -u $target/FUZZ.$ext -mc $mc -c
+else
+        echo -e "${BRed}Wordlists Tidak Ada${COff}"
+fi
+}
+####
+kontig(){
+if [ $satu == $w1 ] ; then
+        ffuf -w $wordlists/directory-list-1.0.txt:FUZZ -u $target/FUZZ -recursion -recursion-depth 1 -e .$ext -v  -mc $mc -c
+elif [ $clear == $w1  ]; then
+    clear
+elif [ $w == $w1 ]; then
+    wordlists1
+elif [ $nol == $w1 ]; then
+    kondisi
+elif [ $help == $w1 ]; then
+    help
+elif [ $dua == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-2.3-small.txt:FUZZ -u $target/FUZZ -recursion -recursion-depth 1 -e .$ext -v -mc $mc -c
+elif [ $tiga == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-2.3-medium.txt:FUZZ -u $target/FUZZ -recursion -recursion-depth 1 -e .$ext -v  -mc $mc -c
+elif [ $empat == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-2.3-big.txt:FUZZ -u $target/FUZZ -recursion -recursion-depth 1 -e .$ext -v  -mc $mc -c
+elif [ $lima == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-lowercase-2.3-small.txt:FUZZ -u $target/FUZZ -recursion -recursion-depth 1 -e .$ext -v  -mc $mc -c
+elif [ $enam == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-lowercase-2.3-medium.txt:FUZZ -u $target/FUZZ -recursion -recursion-depth 1 -e .$ext -v  -mc $mc -c
+elif [ $tujuh == $w1  ] ; then
+        ffuf -w $wordlists/directory-list-lowercase-2.3-big.txt:FUZZ -u $target/FUZZ -recursion -recursion-depth 1 -e .$ext -v  -mc $mc -c
+else
+        echo -e "${BRed}Wordlists Tidak Ada${COff}"
+fi
+}
+
+wordlists2=/usr/share/wordlists/seclists/Discovery/DNS
+####
+konpat(){
+if [ $satu == $w1 ] ; then
+    ffuf -w $wordlists2/subdomains-top1million-110000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $clear == $w1  ]; then
+    clear
+elif [ $w == $w1 ]; then
+    wordlists2
+elif [ $nol == $w1 ]; then
+    kondisi
+elif [ $help == $w1 ]; then
+    help
+elif [ $dua == $w1  ] ; then
+    ffuf -w $wordlists2/subdomains-top1million-20000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $tiga == $w1  ] ; then 
+    ffuf -w $wordlists2/subdomains-top1million-5000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $empat == $w1  ] ; then
+    ffuf -w $wordlists2/deepmagic.com-prefixes-top500.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $lima == $w1  ] ; then
+    ffuf -w $wordlists2/deepmagic.com-prefixes-top50000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $enam == $w1  ] ; then
+    ffuf -w $wordlists2/bitquark-subdomains-top100000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $tujuh == $w1  ] ; then
+    ffuf -w $wordlists2/shubs-stackoverflow.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $delapan == $w1 ] ; then
+    ffuf -w $wordlists2/shubs-subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $sembilan == $w1  ] ; then
+    ffuf -w $wordlists2/combined_subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $sepuluh == $w1  ] ; then
+    ffuf -w $wordlists2/fierce-hostlist.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $sebelas == $w1  ] ; then
+    ffuf -w $wordlists2/italian-subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $duabelas == $w1  ] ; then
+    ffuf -w $wordlists2/dns-Jhaddix.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $tigabelas == $w1  ] ; then
+    ffuf -w $wordlists2/namelist.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $empatbelas == $w1  ] ; then
+    ffuf -w $wordlists2/tlds.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+elif [ $limabelas == $w1  ] ; then
+    ffuf -w $wordlists2/sortedcombined-knock-dnsrecon-fierce-reconng.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+else
+        echo -e "${BRed}Wordlists Tidak Ada${COff}"
+fi
+} 
+
+####
+konlim(){
+if [ $satu == $w1 ] ; then  
+    ffuf -w $wordlists2/subdomains-top1million-110000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $clear == $w1  ]; then
+    clear
+elif [ $w == $w1 ]; then
+    wordlists2
+elif [ $nol == $w1 ]; then
+    kondisi
+elif [ $help == $w1 ]; then
+    help
+elif [ $dua == $w1  ] ; then
+    ffuf -w $wordlists2/subdomains-top1million-20000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $tiga == $w1  ] ; then 
+    ffuf -w $wordlists2/subdomains-top1million-5000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $empat == $w1  ] ; then
+    ffuf -w $wordlists2/deepmagic.com-prefixes-top500.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $lima == $w1  ] ; then
+    ffuf -w $wordlists2/deepmagic.com-prefixes-top50000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $enam == $w1  ] ; then
+    ffuf -w $wordlists2/bitquark-subdomains-top100000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $tujuh == $w1  ] ; then
+    ffuf -w $wordlists2/shubs-stackoverflow.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $delapan == $w1 ] ; then 
+    ffuf -w $wordlists2/shubs-subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $sembilan == $w1  ] ; then
+    ffuf -w $wordlists2/combined_subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $sepuluh == $w1  ] ; then
+    ffuf -w $wordlists2/fierce-hostlist.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $sebelas == $w1  ] ; then
+    ffuf -w $wordlists2/italian-subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $duabelas == $w1  ] ; then
+    ffuf -w $wordlists2/dns-Jhaddix.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $tigabelas == $w1  ] ; then
+    ffuf -w $wordlists2/namelist.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $empatbelas == $w1  ] ; then
+    ffuf -w $wordlists2/tlds.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+elif [ $limabelas == $w1  ] ; then
+    ffuf -w $wordlists2/sortedcombined-knock-dnsrecon-fierce-reconng.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+else
+        echo -e "${BRed}Wordlists Tidak Ada${COff}"
+fi
+}
+help(){
+echo
+echo -e "help         help"
+echo -e "list         list"
+echo -e "w            wordlists"
+echo -e "clear        clear screen"
+echo -e "banner	      banner"
+echo
+}
+banner(){
+echo -e "${BRed}"
+echo -e -ne "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAutoffuf\n" | figlet -f smblock
+echo -e -ne  "\t\t\t<======================>\n"
+}
+ctarget(){
+ct=${BBlue}'┌──('${BRed}'Target💀'${BBlue}')-['${BWhite}'Example : https://target.com'${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$ct"
+read -p "" target
+}
+cmc(){
+cm=${BBlue}'┌──('${BRed}'Respone💀Status'${BBlue}')-['${BWhite}'Example :all, 200,301,302,401,403,500'${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$cm"
+read -p "" mc
+}
+cwordl(){
+cw=${BBlue}'┌──('${BRed}'Choose💀Wordlists'${BBlue}')-['${BWhite}''${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$cw"
+read -p "" w1
+}
+cext(){
+cx=${BBlue}'┌──('${BRed}'Choose💀Extentions'${BBlue}')-['${BWhite}'Example : php,phps,html,aspx,txt'${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$cx" 
+read -p "" ext
+}
+cfs(){
+cf=${BBlue}'┌──('${BRed}'Choose💀Filter'${BBlue}')-['${BWhite}'Filter :789,500,425'${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$cf"
+read -p "" fs
+}
+coptions(){
+co=${BBlue}'┌──('${BRed}'Choose💀Options'${BBlue}')-['']\n└─'${BRed}'# '${BWhite}
+echo -ne "$co"
+read -p "" pilih
+}
+curl(){
+cu=${BBlue}'┌──('${BRed}'http/https?'${BBlue}')-['']\n└─'${BRed}'# '${BWhite}
+echo -ne "$co"
+read -p "" url
+}
+clear
+banner
+kondisi(){
+list
+while true
+do
+fuzz=FUZZ
+echo
+coptions
+if [ $nol = $pilih ]; then
+    automations
+elif [ $clear == $pilih  ]; then
+    clear
+elif [ $list == $pilih ]; then
+    list
+elif [ $help == $pilih ]; then
+    help
+elif [ $banner == $pilih ]; then
+    banner
+elif [ $satu == $pilih ] ; then
+	ctarget
+	cmc
+    wordlists1
+    echo -e "${BWhite}"
+    while true
+    do
+	cwordl
+    konsat
+    done
+elif [ $dua == $pilih ] ; then
+	ctarget
+    echo -e "${BWhite}"
+    ffuf -w $wordlists/web-extensions.txt:FUZZ -u $target$fuzz -c
+elif [ $tiga == $pilih ] ; then
+	ctarget
+	cmc
+	cext
+    wordlists1
+    echo -e "${BWhite}"
+    while true
+    do
+	cwordl
+    kondu
+    done
+elif [ $empat == $pilih ] ; then
+	ctarget
+	cmc
+	cext
+    wordlists1
+    echo -e "${BWhite}"
+    while true
+    do
+	cwordl
+    kontig
+    done
+elif [ $lima == $pilih ] ; then
+	ctarget
+	curl
+	cmc
+    wordlists2
+    echo -e "${BWhite}"
+    while true
+    do
+	cwordl
+    konpat
+    done
+elif [ $enam == $pilih ] ; then
+	ctarget
+	curl
+	cmc
+	cfs
+    wordlists2
+    echo -e "${BWhite}"
+    while true
+    do
+    read -p "Pilih Wordlists : " w1
+    konlim
+    done
+elif [ $tujuh == $pilih ] ; then
+	ctarget
+	cmc
+	cfs
+    echo -e "${BWhite}"
+    ffuf -w $wordlists/burp-parameter-names.txt:FUZZ -u $target$fuzz=key -fs $fs -mc $mc -c
+elif [ $delapan == $pilih ] ; then
+	ctarget
+	cmc
+	cfs
+    echo -e "${BWhite}"
+    ffuf -w $wordlists/burp-parameter-names.txt:FUZZ -u $target -X POST -d "FUZZ=key" -H 'Content-Type: application/x-www-form-urlencoded' -fs $fs  -mc $mc -c
+elif [ $sembilan == $pilih ] ; then
+	ctarget
+	cmc
+	cfs
+    echo -e "${BWhite}"
+    ffuf -w /usr/share/wordlists/ids.txt:FUZZ -u $target -X POST -d "id=FUZZ" -H 'Content-Type: application/x-www-form-urlencoded' -fs $fs -mc $mc -c
+else
+  echo -e "${BRed}Pilihan Salah${COff}"
+
+fi
+done
+}
+
+kondisi
+
+
+
+
