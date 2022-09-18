@@ -171,7 +171,7 @@ wordlists2=/usr/share/wordlists/seclists/Discovery/DNS
 ####
 konpat(){
 if [ $satu == $w1 ] ; then
-    ffuf -w $wordlists2/subdomains-top1million-110000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/subdomains-top1million-5000.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $clear == $w1  ]; then
     clear
 elif [ $w == $w1 ]; then
@@ -181,33 +181,33 @@ elif [ $nol == $w1 ]; then
 elif [ $help == $w1 ]; then
     help
 elif [ $dua == $w1  ] ; then
-    ffuf -w $wordlists2/subdomains-top1million-20000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/subdomains-top1million-20000.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $tiga == $w1  ] ; then 
-    ffuf -w $wordlists2/subdomains-top1million-5000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/subdomains-top1million-110000.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $empat == $w1  ] ; then
-    ffuf -w $wordlists2/deepmagic.com-prefixes-top500.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/deepmagic.com-prefixes-top500.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $lima == $w1  ] ; then
-    ffuf -w $wordlists2/deepmagic.com-prefixes-top50000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/deepmagic.com-prefixes-top50000.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $enam == $w1  ] ; then
-    ffuf -w $wordlists2/bitquark-subdomains-top100000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/bitquark-subdomains-top100000.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $tujuh == $w1  ] ; then
-    ffuf -w $wordlists2/shubs-stackoverflow.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/shubs-stackoverflow.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $delapan == $w1 ] ; then
-    ffuf -w $wordlists2/shubs-subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/shubs-subdomains.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $sembilan == $w1  ] ; then
-    ffuf -w $wordlists2/combined_subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/combined_subdomains.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $sepuluh == $w1  ] ; then
-    ffuf -w $wordlists2/fierce-hostlist.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/fierce-hostlist.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $sebelas == $w1  ] ; then
-    ffuf -w $wordlists2/italian-subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/italian-subdomains.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $duabelas == $w1  ] ; then
-    ffuf -w $wordlists2/dns-Jhaddix.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/dns-Jhaddix.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $tigabelas == $w1  ] ; then
-    ffuf -w $wordlists2/namelist.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/namelist.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $empatbelas == $w1  ] ; then
-    ffuf -w $wordlists2/tlds.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/tlds.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 elif [ $limabelas == $w1  ] ; then
-    ffuf -w $wordlists2/sortedcombined-knock-dnsrecon-fierce-reconng.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -c
+    ffuf -w $wordlists2/sortedcombined-knock-dnsrecon-fierce-reconng.txt:FUZZ -u $url://FUZZ.$target/ -mc $mc -c
 else
         echo -e "${BRed}Wordlists Tidak Ada${COff}"
 fi
@@ -216,7 +216,7 @@ fi
 ####
 konlim(){
 if [ $satu == $w1 ] ; then  
-    ffuf -w $wordlists2/subdomains-top1million-110000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/subdomains-top1million-110000.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $clear == $w1  ]; then
     clear
 elif [ $w == $w1 ]; then
@@ -226,33 +226,33 @@ elif [ $nol == $w1 ]; then
 elif [ $help == $w1 ]; then
     help
 elif [ $dua == $w1  ] ; then
-    ffuf -w $wordlists2/subdomains-top1million-20000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/subdomains-top1million-20000.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $tiga == $w1  ] ; then 
-    ffuf -w $wordlists2/subdomains-top1million-5000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/subdomains-top1million-5000.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $empat == $w1  ] ; then
-    ffuf -w $wordlists2/deepmagic.com-prefixes-top500.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/deepmagic.com-prefixes-top500.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $lima == $w1  ] ; then
-    ffuf -w $wordlists2/deepmagic.com-prefixes-top50000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/deepmagic.com-prefixes-top50000.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $enam == $w1  ] ; then
-    ffuf -w $wordlists2/bitquark-subdomains-top100000.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/bitquark-subdomains-top100000.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $tujuh == $w1  ] ; then
-    ffuf -w $wordlists2/shubs-stackoverflow.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/shubs-stackoverflow.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $delapan == $w1 ] ; then 
-    ffuf -w $wordlists2/shubs-subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/shubs-subdomains.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $sembilan == $w1  ] ; then
-    ffuf -w $wordlists2/combined_subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/combined_subdomains.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $sepuluh == $w1  ] ; then
-    ffuf -w $wordlists2/fierce-hostlist.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/fierce-hostlist.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $sebelas == $w1  ] ; then
-    ffuf -w $wordlists2/italian-subdomains.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/italian-subdomains.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $duabelas == $w1  ] ; then
-    ffuf -w $wordlists2/dns-Jhaddix.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/dns-Jhaddix.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $tigabelas == $w1  ] ; then
-    ffuf -w $wordlists2/namelist.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/namelist.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $empatbelas == $w1  ] ; then
-    ffuf -w $wordlists2/tlds.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/tlds.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 elif [ $limabelas == $w1  ] ; then
-    ffuf -w $wordlists2/sortedcombined-knock-dnsrecon-fierce-reconng.txt:FUZZ -u $url://FUZZ/$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
+    ffuf -w $wordlists2/sortedcombined-knock-dnsrecon-fierce-reconng.txt:FUZZ -u $url://$target/ -mc $mc -H "Host: FUZZ.$target" -fs $fs -c
 else
         echo -e "${BRed}Wordlists Tidak Ada${COff}"
 fi
@@ -271,6 +271,12 @@ echo -e "${BRed}"
 echo -e -ne "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAutoffuf\n" | figlet -f smblock
 echo -e -ne  "\t\t\t<======================>\n"
 }
+ctarget2(){
+ct2=${BBlue}'┌──('${BRed}'Target💀'${BBlue}')-['${BWhite}'Example : target.com'${BBlue}']\n└─'${BRed}'# '${BWhite}
+echo -ne "$ct2"
+read -p "" target
+}
+
 ctarget(){
 ct=${BBlue}'┌──('${BRed}'Target💀'${BBlue}')-['${BWhite}'Example : https://target.com'${BBlue}']\n└─'${BRed}'# '${BWhite}
 echo -ne "$ct"
@@ -303,7 +309,7 @@ read -p "" pilih
 }
 curl(){
 cu=${BBlue}'┌──('${BRed}'http/https?'${BBlue}')-['']\n└─'${BRed}'# '${BWhite}
-echo -ne "$co"
+echo -ne "$cu"
 read -p "" url
 }
 clear
@@ -362,7 +368,7 @@ elif [ $empat == $pilih ] ; then
     kontig
     done
 elif [ $lima == $pilih ] ; then
-	ctarget
+	ctarget2
 	curl
 	cmc
     wordlists2
@@ -373,7 +379,7 @@ elif [ $lima == $pilih ] ; then
     konpat
     done
 elif [ $enam == $pilih ] ; then
-	ctarget
+	ctarget2
 	curl
 	cmc
 	cfs

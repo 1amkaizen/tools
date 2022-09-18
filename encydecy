@@ -95,7 +95,7 @@ elif [ $satu = $pilih ]; then
 elif [ $dua = $pilih ]; then
 	a="MD5"
 	subtext
-	etext=g` echo -n $code   | md5sum `
+	etext=` echo -n $code | md5sum`
 	output
 elif [ $tiga = $pilih ]; then
 	a="SHA256"
